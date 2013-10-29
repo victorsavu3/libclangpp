@@ -1,7 +1,4 @@
-#include <libclang++/location.h>
-
-#ifndef FILE_H_INCLUDED_
-#define FILE_H_INCLUDED_
+#pragma once
 
 #include <memory>
 
@@ -9,17 +6,16 @@ namespace clang {
 	class File;
 }
 
-#define FILE_H_INCLUDED
-
-#include <libclang++/translationunit.h>
-#include <libclang++/string.h>
 #include <libclang++/exception.h>
-#include <libclang++/sourcerange.h>
-#include <libclang++/sourcelocation.h>
+#include <libclang++/string.h>
 
 namespace clang {
 
 class File_;
+
+class TranslationUnit;
+class SourceLocation;
+class SourceRange;
 
 class File {
 	public:
@@ -57,4 +53,6 @@ class File {
 
 }
 
-#endif
+#include <libclang++/translationunit.h>
+#include <libclang++/sourcelocation.h>
+#include <libclang++/sourcerange.h>
