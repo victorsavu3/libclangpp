@@ -2,6 +2,10 @@
 
 #include <Index.h>
 
+#include <type_traits>
+
+static_assert(std::is_same<CXFile, void*>::value, "Expected CXFile to be void*");
+
 static inline bool clang_File_isNull(CXFile file) {
 	return file == nullptr;
 }
@@ -11,10 +15,6 @@ static inline CXFile clang_getNullFile() {
 }
 
 static inline bool clang_Location_isNull(CXSourceLocation location) {
-	CXFile file;
-	unsigned line, column, offset;
-
-	clang_getFileLocation(location, &file, &line, &column, &offset);
-
-	return clang_File_isNull(file);
+	// inspired by the implementation of clang_Range_isNull()
+	return clang_equalLocations(location, clang_getNullLocation());
 }
