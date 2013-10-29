@@ -1,7 +1,5 @@
 #include <libclang++/translationunit_internal.h>
 
-#include <libclang++/sourcelocation_internal.h>
-#include <libclang++/cursor_internal.h>
 #include <libclang++/string_internal.h>
 #include <libclang++/tokens_internal.h>
 #include <libclang++/file_internal.h>

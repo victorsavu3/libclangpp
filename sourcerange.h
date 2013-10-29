@@ -6,6 +6,7 @@ namespace clang {
 	class SourceRange;
 }
 
+#include <libclang++/translationunit.h>
 #include <libclang++/sourcelocation.h>
 #include <libclang++/exception.h>
 
