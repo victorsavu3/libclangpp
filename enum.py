@@ -6,8 +6,10 @@ import re;
 f=open("/usr/include/clang-c/Index.h", "r");
 mm = mmap.mmap(f.fileno(), 0, access = mmap.ACCESS_READ);
 
+mm = re.sub(r'/\*(.|[\r\n])*?\*/', "", mm);
+
 enum1 = re.compile("typedef enum +?{([^ }]+)} ?([A-Za-z0-9_]*) ?;");
-enum2 = re.compile("enum +([A-Za-z0-9_]+) *{([^}]*)}");
+enum2 = re.compile("enum +([A-Za-z0-9_]+) *{([^}]*)} ?");
 enumitem = re.compile("CX(([A-Za-z0-9_]+)([ \t\n]*=[ \t\n]*(([0-9]+)|(0x[0-9a-fA-F]+)|([A-Za-z0-9_]+)|(1 << [0-9]+)|(\(\(1 << 22\) - 1\))))?)(,|( ?\n))");
 
 items = [];
@@ -36,7 +38,7 @@ for item in items:
 			nitem['value'] = nitem['value'][2:];
 			nitem['unique'] = False;
 			nitem['value'] = '_'.join(nitem['value'].split("_")[1:]);
-		if nitem['name'] == 'Cursor_FirstRef':
+		if nitem['name'].startswith('Cursor_First'):
 			nitem['unique'] = False;
 		nitem['orig'] = nitem['name'];
 		nitem['name'] = '_'.join(nitem['name'].split("_")[1:]);

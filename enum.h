@@ -143,6 +143,120 @@ enum class CursorKind {
 	NamespaceRef = 46,
 	MemberRef = 47,
 	LabelRef = 48,
+	OverloadedDeclRef = 49,
+	VariableRef = 50,
+	LastRef = VariableRef,
+	FirstInvalid = 70,
+	InvalidFile = 70,
+	NoDeclFound = 71,
+	NotImplemented = 72,
+	InvalidCode = 73,
+	LastInvalid = InvalidCode,
+	FirstExpr = 100,
+	UnexposedExpr = 100,
+	DeclRefExpr = 101,
+	MemberRefExpr = 102,
+	CallExpr = 103,
+	ObjCMessageExpr = 104,
+	BlockExpr = 105,
+	IntegerLiteral = 106,
+	FloatingLiteral = 107,
+	ImaginaryLiteral = 108,
+	StringLiteral = 109,
+	CharacterLiteral = 110,
+	ParenExpr = 111,
+	UnaryOperator = 112,
+	ArraySubscriptExpr = 113,
+	BinaryOperator = 114,
+	CompoundAssignOperator = 115,
+	ConditionalOperator = 116,
+	CStyleCastExpr = 117,
+	CompoundLiteralExpr = 118,
+	InitListExpr = 119,
+	AddrLabelExpr = 120,
+	StmtExpr = 121,
+	GenericSelectionExpr = 122,
+	GNUNullExpr = 123,
+	CXXStaticCastExpr = 124,
+	CXXDynamicCastExpr = 125,
+	CXXReinterpretCastExpr = 126,
+	CXXConstCastExpr = 127,
+	CXXFunctionalCastExpr = 128,
+	CXXTypeidExpr = 129,
+	CXXBoolLiteralExpr = 130,
+	CXXNullPtrLiteralExpr = 131,
+	CXXThisExpr = 132,
+	CXXThrowExpr = 133,
+	CXXNewExpr = 134,
+	CXXDeleteExpr = 135,
+	UnaryExpr = 136,
+	ObjCStringLiteral = 137,
+	ObjCEncodeExpr = 138,
+	ObjCSelectorExpr = 139,
+	ObjCProtocolExpr = 140,
+	ObjCBridgedCastExpr = 141,
+	PackExpansionExpr = 142,
+	SizeOfPackExpr = 143,
+	LambdaExpr = 144,
+	ObjCBoolLiteralExpr = 145,
+	ObjCSelfExpr = 146,
+	LastExpr = ObjCSelfExpr,
+	FirstStmt = 200,
+	UnexposedStmt = 200,
+	LabelStmt = 201,
+	CompoundStmt = 202,
+	CaseStmt = 203,
+	DefaultStmt = 204,
+	IfStmt = 205,
+	SwitchStmt = 206,
+	WhileStmt = 207,
+	DoStmt = 208,
+	ForStmt = 209,
+	GotoStmt = 210,
+	IndirectGotoStmt = 211,
+	ContinueStmt = 212,
+	BreakStmt = 213,
+	ReturnStmt = 214,
+	GCCAsmStmt = 215,
+	AsmStmt = GCCAsmStmt,
+	ObjCAtTryStmt = 216,
+	ObjCAtCatchStmt = 217,
+	ObjCAtFinallyStmt = 218,
+	ObjCAtThrowStmt = 219,
+	ObjCAtSynchronizedStmt = 220,
+	ObjCAutoreleasePoolStmt = 221,
+	ObjCForCollectionStmt = 222,
+	CXXCatchStmt = 223,
+	CXXTryStmt = 224,
+	CXXForRangeStmt = 225,
+	SEHTryStmt = 226,
+	SEHExceptStmt = 227,
+	SEHFinallyStmt = 228,
+	MSAsmStmt = 229,
+	NullStmt = 230,
+	DeclStmt = 231,
+	LastStmt = DeclStmt,
+	TranslationUnit = 300,
+	FirstAttr = 400,
+	UnexposedAttr = 400,
+	IBActionAttr = 401,
+	IBOutletAttr = 402,
+	IBOutletCollectionAttr = 403,
+	CXXFinalAttr = 404,
+	CXXOverrideAttr = 405,
+	AnnotateAttr = 406,
+	AsmLabelAttr = 407,
+	LastAttr = AsmLabelAttr,
+	PreprocessingDirective = 500,
+	MacroDefinition = 501,
+	MacroExpansion = 502,
+	MacroInstantiation = MacroExpansion,
+	InclusionDirective = 503,
+	FirstPreprocessing = PreprocessingDirective,
+	LastPreprocessing = InclusionDirective,
+	ModuleImportDecl = 600,
+	FirstExtraDecl = ModuleImportDecl,
+	LastExtraDecl = ModuleImportDecl,
 };
 
 enum class LinkageKind {
@@ -295,6 +409,16 @@ enum class CompletionChunkKind {
 	LeftBracket,
 	RightBracket,
 	LeftBrace,
+	RightBrace,
+	LeftAngle,
+	RightAngle,
+	Comma,
+	ResultType,
+	Colon,
+	SemiColon,
+	Equal,
+	HorizontalSpace,
+	VerticalSpace,
 };
 
 enum class CodeComplete_Flags {
@@ -601,6 +725,120 @@ inline std::string toString<CursorKind>(CursorKind val) {
 		case CursorKind::NamespaceRef: return "NamespaceRef";
 		case CursorKind::MemberRef: return "MemberRef";
 		case CursorKind::LabelRef: return "LabelRef";
+		case CursorKind::OverloadedDeclRef: return "OverloadedDeclRef";
+		case CursorKind::VariableRef: return "VariableRef";
+		//case CursorKind::LastRef: return "LastRef";
+		//case CursorKind::FirstInvalid: return "FirstInvalid";
+		case CursorKind::InvalidFile: return "InvalidFile";
+		case CursorKind::NoDeclFound: return "NoDeclFound";
+		case CursorKind::NotImplemented: return "NotImplemented";
+		case CursorKind::InvalidCode: return "InvalidCode";
+		//case CursorKind::LastInvalid: return "LastInvalid";
+		//case CursorKind::FirstExpr: return "FirstExpr";
+		case CursorKind::UnexposedExpr: return "UnexposedExpr";
+		case CursorKind::DeclRefExpr: return "DeclRefExpr";
+		case CursorKind::MemberRefExpr: return "MemberRefExpr";
+		case CursorKind::CallExpr: return "CallExpr";
+		case CursorKind::ObjCMessageExpr: return "ObjCMessageExpr";
+		case CursorKind::BlockExpr: return "BlockExpr";
+		case CursorKind::IntegerLiteral: return "IntegerLiteral";
+		case CursorKind::FloatingLiteral: return "FloatingLiteral";
+		case CursorKind::ImaginaryLiteral: return "ImaginaryLiteral";
+		case CursorKind::StringLiteral: return "StringLiteral";
+		case CursorKind::CharacterLiteral: return "CharacterLiteral";
+		case CursorKind::ParenExpr: return "ParenExpr";
+		case CursorKind::UnaryOperator: return "UnaryOperator";
+		case CursorKind::ArraySubscriptExpr: return "ArraySubscriptExpr";
+		case CursorKind::BinaryOperator: return "BinaryOperator";
+		case CursorKind::CompoundAssignOperator: return "CompoundAssignOperator";
+		case CursorKind::ConditionalOperator: return "ConditionalOperator";
+		case CursorKind::CStyleCastExpr: return "CStyleCastExpr";
+		case CursorKind::CompoundLiteralExpr: return "CompoundLiteralExpr";
+		case CursorKind::InitListExpr: return "InitListExpr";
+		case CursorKind::AddrLabelExpr: return "AddrLabelExpr";
+		case CursorKind::StmtExpr: return "StmtExpr";
+		case CursorKind::GenericSelectionExpr: return "GenericSelectionExpr";
+		case CursorKind::GNUNullExpr: return "GNUNullExpr";
+		case CursorKind::CXXStaticCastExpr: return "CXXStaticCastExpr";
+		case CursorKind::CXXDynamicCastExpr: return "CXXDynamicCastExpr";
+		case CursorKind::CXXReinterpretCastExpr: return "CXXReinterpretCastExpr";
+		case CursorKind::CXXConstCastExpr: return "CXXConstCastExpr";
+		case CursorKind::CXXFunctionalCastExpr: return "CXXFunctionalCastExpr";
+		case CursorKind::CXXTypeidExpr: return "CXXTypeidExpr";
+		case CursorKind::CXXBoolLiteralExpr: return "CXXBoolLiteralExpr";
+		case CursorKind::CXXNullPtrLiteralExpr: return "CXXNullPtrLiteralExpr";
+		case CursorKind::CXXThisExpr: return "CXXThisExpr";
+		case CursorKind::CXXThrowExpr: return "CXXThrowExpr";
+		case CursorKind::CXXNewExpr: return "CXXNewExpr";
+		case CursorKind::CXXDeleteExpr: return "CXXDeleteExpr";
+		case CursorKind::UnaryExpr: return "UnaryExpr";
+		case CursorKind::ObjCStringLiteral: return "ObjCStringLiteral";
+		case CursorKind::ObjCEncodeExpr: return "ObjCEncodeExpr";
+		case CursorKind::ObjCSelectorExpr: return "ObjCSelectorExpr";
+		case CursorKind::ObjCProtocolExpr: return "ObjCProtocolExpr";
+		case CursorKind::ObjCBridgedCastExpr: return "ObjCBridgedCastExpr";
+		case CursorKind::PackExpansionExpr: return "PackExpansionExpr";
+		case CursorKind::SizeOfPackExpr: return "SizeOfPackExpr";
+		case CursorKind::LambdaExpr: return "LambdaExpr";
+		case CursorKind::ObjCBoolLiteralExpr: return "ObjCBoolLiteralExpr";
+		case CursorKind::ObjCSelfExpr: return "ObjCSelfExpr";
+		//case CursorKind::LastExpr: return "LastExpr";
+		//case CursorKind::FirstStmt: return "FirstStmt";
+		case CursorKind::UnexposedStmt: return "UnexposedStmt";
+		case CursorKind::LabelStmt: return "LabelStmt";
+		case CursorKind::CompoundStmt: return "CompoundStmt";
+		case CursorKind::CaseStmt: return "CaseStmt";
+		case CursorKind::DefaultStmt: return "DefaultStmt";
+		case CursorKind::IfStmt: return "IfStmt";
+		case CursorKind::SwitchStmt: return "SwitchStmt";
+		case CursorKind::WhileStmt: return "WhileStmt";
+		case CursorKind::DoStmt: return "DoStmt";
+		case CursorKind::ForStmt: return "ForStmt";
+		case CursorKind::GotoStmt: return "GotoStmt";
+		case CursorKind::IndirectGotoStmt: return "IndirectGotoStmt";
+		case CursorKind::ContinueStmt: return "ContinueStmt";
+		case CursorKind::BreakStmt: return "BreakStmt";
+		case CursorKind::ReturnStmt: return "ReturnStmt";
+		case CursorKind::GCCAsmStmt: return "GCCAsmStmt";
+		//case CursorKind::AsmStmt: return "AsmStmt";
+		case CursorKind::ObjCAtTryStmt: return "ObjCAtTryStmt";
+		case CursorKind::ObjCAtCatchStmt: return "ObjCAtCatchStmt";
+		case CursorKind::ObjCAtFinallyStmt: return "ObjCAtFinallyStmt";
+		case CursorKind::ObjCAtThrowStmt: return "ObjCAtThrowStmt";
+		case CursorKind::ObjCAtSynchronizedStmt: return "ObjCAtSynchronizedStmt";
+		case CursorKind::ObjCAutoreleasePoolStmt: return "ObjCAutoreleasePoolStmt";
+		case CursorKind::ObjCForCollectionStmt: return "ObjCForCollectionStmt";
+		case CursorKind::CXXCatchStmt: return "CXXCatchStmt";
+		case CursorKind::CXXTryStmt: return "CXXTryStmt";
+		case CursorKind::CXXForRangeStmt: return "CXXForRangeStmt";
+		case CursorKind::SEHTryStmt: return "SEHTryStmt";
+		case CursorKind::SEHExceptStmt: return "SEHExceptStmt";
+		case CursorKind::SEHFinallyStmt: return "SEHFinallyStmt";
+		case CursorKind::MSAsmStmt: return "MSAsmStmt";
+		case CursorKind::NullStmt: return "NullStmt";
+		case CursorKind::DeclStmt: return "DeclStmt";
+		//case CursorKind::LastStmt: return "LastStmt";
+		case CursorKind::TranslationUnit: return "TranslationUnit";
+		//case CursorKind::FirstAttr: return "FirstAttr";
+		case CursorKind::UnexposedAttr: return "UnexposedAttr";
+		case CursorKind::IBActionAttr: return "IBActionAttr";
+		case CursorKind::IBOutletAttr: return "IBOutletAttr";
+		case CursorKind::IBOutletCollectionAttr: return "IBOutletCollectionAttr";
+		case CursorKind::CXXFinalAttr: return "CXXFinalAttr";
+		case CursorKind::CXXOverrideAttr: return "CXXOverrideAttr";
+		case CursorKind::AnnotateAttr: return "AnnotateAttr";
+		case CursorKind::AsmLabelAttr: return "AsmLabelAttr";
+		//case CursorKind::LastAttr: return "LastAttr";
+		case CursorKind::PreprocessingDirective: return "PreprocessingDirective";
+		case CursorKind::MacroDefinition: return "MacroDefinition";
+		case CursorKind::MacroExpansion: return "MacroExpansion";
+		//case CursorKind::MacroInstantiation: return "MacroInstantiation";
+		case CursorKind::InclusionDirective: return "InclusionDirective";
+		//case CursorKind::FirstPreprocessing: return "FirstPreprocessing";
+		//case CursorKind::LastPreprocessing: return "LastPreprocessing";
+		case CursorKind::ModuleImportDecl: return "ModuleImportDecl";
+		//case CursorKind::FirstExtraDecl: return "FirstExtraDecl";
+		//case CursorKind::LastExtraDecl: return "LastExtraDecl";
 		default: throw InvalidEnumValueException<CursorKind>(val);
 	}
 }
@@ -658,6 +896,120 @@ inline CursorKind fromString<CursorKind>(std::string val) {
 	else if(val == "NamespaceRef") return CursorKind::NamespaceRef;
 	else if(val == "MemberRef") return CursorKind::MemberRef;
 	else if(val == "LabelRef") return CursorKind::LabelRef;
+	else if(val == "OverloadedDeclRef") return CursorKind::OverloadedDeclRef;
+	else if(val == "VariableRef") return CursorKind::VariableRef;
+	else if(val == "LastRef") return CursorKind::LastRef;
+	else if(val == "FirstInvalid") return CursorKind::FirstInvalid;
+	else if(val == "InvalidFile") return CursorKind::InvalidFile;
+	else if(val == "NoDeclFound") return CursorKind::NoDeclFound;
+	else if(val == "NotImplemented") return CursorKind::NotImplemented;
+	else if(val == "InvalidCode") return CursorKind::InvalidCode;
+	else if(val == "LastInvalid") return CursorKind::LastInvalid;
+	else if(val == "FirstExpr") return CursorKind::FirstExpr;
+	else if(val == "UnexposedExpr") return CursorKind::UnexposedExpr;
+	else if(val == "DeclRefExpr") return CursorKind::DeclRefExpr;
+	else if(val == "MemberRefExpr") return CursorKind::MemberRefExpr;
+	else if(val == "CallExpr") return CursorKind::CallExpr;
+	else if(val == "ObjCMessageExpr") return CursorKind::ObjCMessageExpr;
+	else if(val == "BlockExpr") return CursorKind::BlockExpr;
+	else if(val == "IntegerLiteral") return CursorKind::IntegerLiteral;
+	else if(val == "FloatingLiteral") return CursorKind::FloatingLiteral;
+	else if(val == "ImaginaryLiteral") return CursorKind::ImaginaryLiteral;
+	else if(val == "StringLiteral") return CursorKind::StringLiteral;
+	else if(val == "CharacterLiteral") return CursorKind::CharacterLiteral;
+	else if(val == "ParenExpr") return CursorKind::ParenExpr;
+	else if(val == "UnaryOperator") return CursorKind::UnaryOperator;
+	else if(val == "ArraySubscriptExpr") return CursorKind::ArraySubscriptExpr;
+	else if(val == "BinaryOperator") return CursorKind::BinaryOperator;
+	else if(val == "CompoundAssignOperator") return CursorKind::CompoundAssignOperator;
+	else if(val == "ConditionalOperator") return CursorKind::ConditionalOperator;
+	else if(val == "CStyleCastExpr") return CursorKind::CStyleCastExpr;
+	else if(val == "CompoundLiteralExpr") return CursorKind::CompoundLiteralExpr;
+	else if(val == "InitListExpr") return CursorKind::InitListExpr;
+	else if(val == "AddrLabelExpr") return CursorKind::AddrLabelExpr;
+	else if(val == "StmtExpr") return CursorKind::StmtExpr;
+	else if(val == "GenericSelectionExpr") return CursorKind::GenericSelectionExpr;
+	else if(val == "GNUNullExpr") return CursorKind::GNUNullExpr;
+	else if(val == "CXXStaticCastExpr") return CursorKind::CXXStaticCastExpr;
+	else if(val == "CXXDynamicCastExpr") return CursorKind::CXXDynamicCastExpr;
+	else if(val == "CXXReinterpretCastExpr") return CursorKind::CXXReinterpretCastExpr;
+	else if(val == "CXXConstCastExpr") return CursorKind::CXXConstCastExpr;
+	else if(val == "CXXFunctionalCastExpr") return CursorKind::CXXFunctionalCastExpr;
+	else if(val == "CXXTypeidExpr") return CursorKind::CXXTypeidExpr;
+	else if(val == "CXXBoolLiteralExpr") return CursorKind::CXXBoolLiteralExpr;
+	else if(val == "CXXNullPtrLiteralExpr") return CursorKind::CXXNullPtrLiteralExpr;
+	else if(val == "CXXThisExpr") return CursorKind::CXXThisExpr;
+	else if(val == "CXXThrowExpr") return CursorKind::CXXThrowExpr;
+	else if(val == "CXXNewExpr") return CursorKind::CXXNewExpr;
+	else if(val == "CXXDeleteExpr") return CursorKind::CXXDeleteExpr;
+	else if(val == "UnaryExpr") return CursorKind::UnaryExpr;
+	else if(val == "ObjCStringLiteral") return CursorKind::ObjCStringLiteral;
+	else if(val == "ObjCEncodeExpr") return CursorKind::ObjCEncodeExpr;
+	else if(val == "ObjCSelectorExpr") return CursorKind::ObjCSelectorExpr;
+	else if(val == "ObjCProtocolExpr") return CursorKind::ObjCProtocolExpr;
+	else if(val == "ObjCBridgedCastExpr") return CursorKind::ObjCBridgedCastExpr;
+	else if(val == "PackExpansionExpr") return CursorKind::PackExpansionExpr;
+	else if(val == "SizeOfPackExpr") return CursorKind::SizeOfPackExpr;
+	else if(val == "LambdaExpr") return CursorKind::LambdaExpr;
+	else if(val == "ObjCBoolLiteralExpr") return CursorKind::ObjCBoolLiteralExpr;
+	else if(val == "ObjCSelfExpr") return CursorKind::ObjCSelfExpr;
+	else if(val == "LastExpr") return CursorKind::LastExpr;
+	else if(val == "FirstStmt") return CursorKind::FirstStmt;
+	else if(val == "UnexposedStmt") return CursorKind::UnexposedStmt;
+	else if(val == "LabelStmt") return CursorKind::LabelStmt;
+	else if(val == "CompoundStmt") return CursorKind::CompoundStmt;
+	else if(val == "CaseStmt") return CursorKind::CaseStmt;
+	else if(val == "DefaultStmt") return CursorKind::DefaultStmt;
+	else if(val == "IfStmt") return CursorKind::IfStmt;
+	else if(val == "SwitchStmt") return CursorKind::SwitchStmt;
+	else if(val == "WhileStmt") return CursorKind::WhileStmt;
+	else if(val == "DoStmt") return CursorKind::DoStmt;
+	else if(val == "ForStmt") return CursorKind::ForStmt;
+	else if(val == "GotoStmt") return CursorKind::GotoStmt;
+	else if(val == "IndirectGotoStmt") return CursorKind::IndirectGotoStmt;
+	else if(val == "ContinueStmt") return CursorKind::ContinueStmt;
+	else if(val == "BreakStmt") return CursorKind::BreakStmt;
+	else if(val == "ReturnStmt") return CursorKind::ReturnStmt;
+	else if(val == "GCCAsmStmt") return CursorKind::GCCAsmStmt;
+	else if(val == "AsmStmt") return CursorKind::AsmStmt;
+	else if(val == "ObjCAtTryStmt") return CursorKind::ObjCAtTryStmt;
+	else if(val == "ObjCAtCatchStmt") return CursorKind::ObjCAtCatchStmt;
+	else if(val == "ObjCAtFinallyStmt") return CursorKind::ObjCAtFinallyStmt;
+	else if(val == "ObjCAtThrowStmt") return CursorKind::ObjCAtThrowStmt;
+	else if(val == "ObjCAtSynchronizedStmt") return CursorKind::ObjCAtSynchronizedStmt;
+	else if(val == "ObjCAutoreleasePoolStmt") return CursorKind::ObjCAutoreleasePoolStmt;
+	else if(val == "ObjCForCollectionStmt") return CursorKind::ObjCForCollectionStmt;
+	else if(val == "CXXCatchStmt") return CursorKind::CXXCatchStmt;
+	else if(val == "CXXTryStmt") return CursorKind::CXXTryStmt;
+	else if(val == "CXXForRangeStmt") return CursorKind::CXXForRangeStmt;
+	else if(val == "SEHTryStmt") return CursorKind::SEHTryStmt;
+	else if(val == "SEHExceptStmt") return CursorKind::SEHExceptStmt;
+	else if(val == "SEHFinallyStmt") return CursorKind::SEHFinallyStmt;
+	else if(val == "MSAsmStmt") return CursorKind::MSAsmStmt;
+	else if(val == "NullStmt") return CursorKind::NullStmt;
+	else if(val == "DeclStmt") return CursorKind::DeclStmt;
+	else if(val == "LastStmt") return CursorKind::LastStmt;
+	else if(val == "TranslationUnit") return CursorKind::TranslationUnit;
+	else if(val == "FirstAttr") return CursorKind::FirstAttr;
+	else if(val == "UnexposedAttr") return CursorKind::UnexposedAttr;
+	else if(val == "IBActionAttr") return CursorKind::IBActionAttr;
+	else if(val == "IBOutletAttr") return CursorKind::IBOutletAttr;
+	else if(val == "IBOutletCollectionAttr") return CursorKind::IBOutletCollectionAttr;
+	else if(val == "CXXFinalAttr") return CursorKind::CXXFinalAttr;
+	else if(val == "CXXOverrideAttr") return CursorKind::CXXOverrideAttr;
+	else if(val == "AnnotateAttr") return CursorKind::AnnotateAttr;
+	else if(val == "AsmLabelAttr") return CursorKind::AsmLabelAttr;
+	else if(val == "LastAttr") return CursorKind::LastAttr;
+	else if(val == "PreprocessingDirective") return CursorKind::PreprocessingDirective;
+	else if(val == "MacroDefinition") return CursorKind::MacroDefinition;
+	else if(val == "MacroExpansion") return CursorKind::MacroExpansion;
+	else if(val == "MacroInstantiation") return CursorKind::MacroInstantiation;
+	else if(val == "InclusionDirective") return CursorKind::InclusionDirective;
+	else if(val == "FirstPreprocessing") return CursorKind::FirstPreprocessing;
+	else if(val == "LastPreprocessing") return CursorKind::LastPreprocessing;
+	else if(val == "ModuleImportDecl") return CursorKind::ModuleImportDecl;
+	else if(val == "FirstExtraDecl") return CursorKind::FirstExtraDecl;
+	else if(val == "LastExtraDecl") return CursorKind::LastExtraDecl;
 	else throw InvalidStringValueException(val);
 }
 
@@ -1023,6 +1375,16 @@ inline std::string toString<CompletionChunkKind>(CompletionChunkKind val) {
 		case CompletionChunkKind::LeftBracket: return "LeftBracket";
 		case CompletionChunkKind::RightBracket: return "RightBracket";
 		case CompletionChunkKind::LeftBrace: return "LeftBrace";
+		case CompletionChunkKind::RightBrace: return "RightBrace";
+		case CompletionChunkKind::LeftAngle: return "LeftAngle";
+		case CompletionChunkKind::RightAngle: return "RightAngle";
+		case CompletionChunkKind::Comma: return "Comma";
+		case CompletionChunkKind::ResultType: return "ResultType";
+		case CompletionChunkKind::Colon: return "Colon";
+		case CompletionChunkKind::SemiColon: return "SemiColon";
+		case CompletionChunkKind::Equal: return "Equal";
+		case CompletionChunkKind::HorizontalSpace: return "HorizontalSpace";
+		case CompletionChunkKind::VerticalSpace: return "VerticalSpace";
 		default: throw InvalidEnumValueException<CompletionChunkKind>(val);
 	}
 }
@@ -1040,6 +1402,16 @@ inline CompletionChunkKind fromString<CompletionChunkKind>(std::string val) {
 	else if(val == "LeftBracket") return CompletionChunkKind::LeftBracket;
 	else if(val == "RightBracket") return CompletionChunkKind::RightBracket;
 	else if(val == "LeftBrace") return CompletionChunkKind::LeftBrace;
+	else if(val == "RightBrace") return CompletionChunkKind::RightBrace;
+	else if(val == "LeftAngle") return CompletionChunkKind::LeftAngle;
+	else if(val == "RightAngle") return CompletionChunkKind::RightAngle;
+	else if(val == "Comma") return CompletionChunkKind::Comma;
+	else if(val == "ResultType") return CompletionChunkKind::ResultType;
+	else if(val == "Colon") return CompletionChunkKind::Colon;
+	else if(val == "SemiColon") return CompletionChunkKind::SemiColon;
+	else if(val == "Equal") return CompletionChunkKind::Equal;
+	else if(val == "HorizontalSpace") return CompletionChunkKind::HorizontalSpace;
+	else if(val == "VerticalSpace") return CompletionChunkKind::VerticalSpace;
 	else throw InvalidStringValueException(val);
 }
 
