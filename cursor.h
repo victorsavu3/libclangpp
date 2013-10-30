@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 
 namespace clang {
 	class Cursor;
@@ -9,6 +10,7 @@ namespace clang {
 #include <libclang++/sourcelocation.h>
 #include <libclang++/sourcerange.h>
 #include <libclang++/exception.h>
+#include <libclang++/enum.h>
 
 namespace clang {
 
@@ -32,6 +34,7 @@ class Cursor {
 		CURSOR_IS(DynamicCall);
 		CURSOR_IS(Variadic);
 		CURSOR_IS(Declaration);
+		CURSOR_IS(Definition);
 		CURSOR_IS(Reference);
 		CURSOR_IS(Expression);
 		CURSOR_IS(Statement);
@@ -47,8 +50,46 @@ class Cursor {
 				throw NullValueUsed<Cursor>();
 		}
 
+		CursorKind getKind() const;
+		LinkageKind getLinkageKind() const;
+		AvailabilityKind getAvailabilityKind() const;
+		LanguageKind getLanguageKind() const;
+
 		SourceLocation getLocation() const;
 		SourceRange getRange() const;
+
+		Cursor getReferenced() const;
+		Cursor getCannonical() const;
+		Cursor getSemanticParent() const;
+		Cursor getLexicalParent() const;
+		Cursor getDefinition() const;
+
+		SourceRange getCommentRange() const;
+		String getNativeBriefComment() const;
+		std::string getBriefComment() const {
+			return getNativeBriefComment().getString();
+		}
+		String getNativeRawComment() const;
+		std::string getRawComment() const {
+			return getNativeRawComment().getString();
+		}
+
+		String getNativeSpelling() const;
+		std::string getSpelling() const {
+			return getNativeSpelling().getString();
+		}
+		String getNativeDisplayName() const;
+		std::string getDisplayName() const {
+			return getNativeDisplayName().getString();
+		}
+		String getNativeUSR() const;
+		std::string getUSR() const {
+			return getNativeUSR().getString();
+		}
+
+		std::vector<Cursor> getChildren() const;
+		std::vector<Cursor> getChildrenRecursive() const;
+
 	private:
 		std::shared_ptr<Cursor_> p;
 };
